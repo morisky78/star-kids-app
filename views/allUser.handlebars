@@ -1,0 +1,32 @@
+<div class="user_summary ">
+  <h2>Let's Show Off!!</h2>
+<div class="user-card">
+        <h3>{{group_name}} profile page!</h3>
+        <span class="user-pic"><img src="{{group_picture}}" /></span>
+        <p>Goal Star: {{group_star_goal_num}}</p>
+        <p>My family reward:{{group_goal_award}}</p>
+         <p>My email:{{email}}</p>
+        
+    </div>
+   
+</div>
+<div class="kids-container">
+ 
+    <!-- for each kid -->
+    {{#each members}}
+    <div class="kid-card">
+        <h3>{{group_name}}</h3>
+        <span class="kid-pic"><img src="{{group_picture}}" /></span>
+        <p>Goal Star: {{group_star_goal_num}}</p>
+        <p>{{group_goal_award}}</p>
+        
+    </div>
+    {{else}}
+    <p class="nodata">No User Data..</p>
+    {{/each}}
+    <!-- for each kid -->
+
+</div>
+ 
+
+

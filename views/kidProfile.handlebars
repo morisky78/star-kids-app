@@ -1,0 +1,79 @@
+<div class="group_summary kids-profile-header">
+    <h2>{{group_name}}  <a href="/group-profile" class="button-8">Group Details</a></h2>
+    <p>When we earn <strong class="goalstar">{{group_star_goal_num}}</strong> stars, 
+    <span>{{group_goal_award}}</span>!!</p>
+</div>
+
+<div class="kids-container">
+
+    <!-- for each kid -->
+    {{#each kids}}
+    <div class="kid-card">
+        <h3>{{name}}</h3>
+        <div class="box-in">
+            <span class="kid-pic"><img src="{{picture}}" /></span>
+
+            <p class="g"><span>Goal:</span> {{star_goal_num}}⭐</p>
+            <p class="aw">{{goal_award}}</p>
+        </div>
+        <section class="btns">
+            <a href="/kids/{{id}}"><button class="button-8">View Details</button></a>
+            <button class="delBtn button-8" data-projId="{{id}}">Delete</button>
+        </section>
+    </div>
+    {{else}}
+    <p class="nodata">No Kid Data. Please enter kid's information.</p>
+    {{/each}}
+    <!-- for each kid -->
+
+</div>
+
+<div class="create-kid">
+<h2>Create a star kid!</h2>
+    <div class="createkid_container">
+    <img id="picture-preview" src="/images/kidpic_placeholder.png"/>
+    <form id="createKid">
+        <div>
+            <label for="kidName">Name:</label>
+            <input type="text" id="kidName" required/>
+        </div>
+        <div>
+            <label for="kidPic">Kids' photo:</label> 
+            <button id="upload_widget" class="cloudinary-button">Upload a picture</button>
+            
+        </div>
+        <div>
+            <label for="kidGoal">Goal Star:</label>
+            <input type="input" id="kidGoalStar" name="kidGoalStar" required onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" placeholder="Number only"/>
+        </div>
+        <div>
+            <label for="kidAward">Award:</label>
+            <input type="input" id="kidAward" name="kidAward" required/>
+        </div>
+        <button type="submit" class="button-43">Create!</button>
+    </form>
+    </div>
+</div>
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+<script type="text/javascript">  
+var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'digyae86x', 
+  uploadPreset: 'prjdz6ga'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+      console.log(result.info.secure_url)
+      const previewImg = document.querySelector("#picture-preview");
+      previewImg.setAttribute('src', result.info.secure_url);
+    }
+  }
+)
+
+document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>
+        
+
+<script src="/js/kidProfile.js"></script>
